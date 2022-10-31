@@ -30,26 +30,30 @@ function generatePassword() {
     passwordCharacterContainer = passwordCharacterContainer.concat(
       alphabet.split("")
     );
+    console.log(passwordCharacterContainer);
   }
   if (uppercaseComformation) {
     passwordCharacterContainer = passwordCharacterContainer.concat(
       alphabetCap.split("")
     );
+    console.log(passwordCharacterContainer);
   }
   if (numbersConfirmation) {
     passwordCharacterContainer = passwordCharacterContainer.concat(
       numbers.split("")
     );
+    console.log(passwordCharacterContainer);
   }
   if (specialCharactersConfirmation) {
     passwordCharacterContainer = passwordCharacterContainer.concat(
       specialCharacters.split("")
     );
+    console.log(passwordCharacterContainer);
   }
 
   var randomPassword = "";
 
-  for (i = 0; i <= passwordLength; i++) {
+  for (i = 0; i < passwordLength; i++) {
     var index = Math.floor(passwordCharacterContainer.length * Math.random());
     randomPassword += passwordCharacterContainer[index];
   }
