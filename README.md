@@ -1,6 +1,7 @@
 # Password Generator
 
 It is an webpage that helps generate a password based on the certain questions the user answers after clicking the "Generate Password" button
+this may include numbers, uppercase letters, lowercase letters, and special characters.
 
 ## Contact Me!
 
