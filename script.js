@@ -3,19 +3,27 @@ var generateBtn = document.querySelector("#generate");
 var alphabet = "abcdefghijklmnopqrstuvwxyz";
 var alphabetCap = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var numbers = "0123456789";
-var specialCharacters = "!@#$%^&*";
-
+var specialCharacters = "!@#$%^&*,.<>/?;+-";
+var alphabetArray = alphabet.split("");
+var alphabetCapArray = alphabetCap.split("");
+var numbersArray = numbers.split("");
+var specialCharactersArray = specialCharacters.split("");
+var confirmPassword = false;
+var lowercaseComformation;
+var uppercaseComformation;
+var numbersConfirmation;
+var specialCharactersConfirmation;
 function generatePassword() {
   var passwordLength = parseInt(prompt("How long do you want your password?"));
   if (passwordLength >= 8 && passwordLength <= 128) {
-    var lowercaseComformation = confirm(
+    lowercaseComformation = confirm(
       "Do you want to include lowercase letters?"
     );
-    var uppercaseComformation = confirm(
+    uppercaseComformation = confirm(
       "Do you want to include uppercase letters?"
     );
-    var numbersConfirmation = confirm("Do you want to include numbers?");
-    var specialCharactersConfirmation = confirm(
+    numbersConfirmation = confirm("Do you want to include numbers?");
+    specialCharactersConfirmation = confirm(
       "Do you want to include special characters?"
     );
     console.log(lowercaseComformation);
@@ -30,25 +38,21 @@ function generatePassword() {
     passwordCharacterContainer = passwordCharacterContainer.concat(
       alphabet.split("")
     );
-    console.log(passwordCharacterContainer);
   }
   if (uppercaseComformation) {
     passwordCharacterContainer = passwordCharacterContainer.concat(
       alphabetCap.split("")
     );
-    console.log(passwordCharacterContainer);
   }
   if (numbersConfirmation) {
     passwordCharacterContainer = passwordCharacterContainer.concat(
       numbers.split("")
     );
-    console.log(passwordCharacterContainer);
   }
   if (specialCharactersConfirmation) {
     passwordCharacterContainer = passwordCharacterContainer.concat(
       specialCharacters.split("")
     );
-    console.log(passwordCharacterContainer);
   }
 
   var randomPassword = "";
@@ -58,7 +62,56 @@ function generatePassword() {
     randomPassword += passwordCharacterContainer[index];
   }
   console.log(randomPassword);
-  return randomPassword;
+
+  if (lowercaseComformation) {
+    for (let i = 0; i < alphabetArray.length; i++) {
+      if (randomPassword.indexOf(alphabetArray[i]) != -1) {
+        confirmPassword = true;
+        break;
+      } else {
+        confirmPassword = false;
+      }
+    }
+  }
+
+  if (uppercaseComformation && confirmPassword == true) {
+    for (let i = 0; i < alphabetCapArray.length; i++) {
+      if (randomPassword.indexOf(alphabetCapArray[i]) != -1) {
+        confirmPassword = true;
+        break;
+      } else {
+        confirmPassword = false;
+      }
+    }
+  }
+
+  if (numbersConfirmation && confirmPassword == true) {
+    for (let i = 0; i < numbersArray.length; i++) {
+      if (randomPassword.indexOf(numbersArray[i]) != -1) {
+        confirmPassword = true;
+        break;
+      } else {
+        confirmPassword = false;
+      }
+    }
+  }
+
+  if (specialCharactersConfirmation && confirmPassword == true) {
+    for (let i = 0; i < specialCharactersArray.length; i++) {
+      if (randomPassword.indexOf(specialCharactersArray[i]) != -1) {
+        confirmPassword = true;
+        break;
+      } else {
+        confirmPassword = false;
+      }
+    }
+  }
+
+  if (confirmPassword) {
+    return randomPassword;
+  } else {
+    generatePassword();
+  }
 }
 
 // Write password to the #password input
