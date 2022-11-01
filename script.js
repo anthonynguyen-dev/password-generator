@@ -13,8 +13,11 @@ var lowercaseComformation;
 var uppercaseComformation;
 var numbersConfirmation;
 var specialCharactersConfirmation;
-function generatePassword() {
-  var passwordLength = parseInt(prompt("How long do you want your password?"));
+var passwordLength;
+var finalPassword;
+
+function passwordAlert() {
+  passwordLength = parseInt(prompt("How long do you want your password?"));
   if (passwordLength >= 8 && passwordLength <= 128) {
     lowercaseComformation = confirm(
       "Do you want to include lowercase letters?"
@@ -31,8 +34,10 @@ function generatePassword() {
     alert(
       "The user's password must be at least 8 characters and no more than 128"
     );
-    return;
   }
+}
+
+function generatePassword() {
   var passwordCharacterContainer = [];
   if (lowercaseComformation) {
     passwordCharacterContainer = passwordCharacterContainer.concat(
@@ -106,9 +111,10 @@ function generatePassword() {
       }
     }
   }
-
+  console.log(randomPassword);
   if (confirmPassword) {
-    return randomPassword;
+    console.log(true);
+    finalPassword = randomPassword;
   } else {
     generatePassword();
   }
@@ -116,7 +122,10 @@ function generatePassword() {
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  passwordAlert();
+  generatePassword();
+  var password = finalPassword;
+  console.log(password);
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
