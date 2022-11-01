@@ -5,6 +5,7 @@ this may include numbers, uppercase letters, lowercase letters, and special char
 
 ## Contact Me!
 
+Email: nguyen.dev@protonmail.com
 [Project Link](https://github.com/anthonynguyen-dev/password-generator)
 [Live Site](https://anthonynguyen-dev.github.io/password-generator/)
 ![Site Image](./img/password%20screen%20shot.png)
